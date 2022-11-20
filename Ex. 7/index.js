@@ -18,4 +18,4 @@ if (qtdComprada >= 12 && !valorItem>0){
 
 valorTotal = qtdComprada*valorItem;
 
-alert("O valor da compra inteira é de R\$"+valorTotal);
+alert("O valor da compra inteira é de R\$"+valorTotal.toFixed(2));
