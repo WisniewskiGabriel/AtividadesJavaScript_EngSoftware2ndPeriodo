@@ -1,8 +1,12 @@
 pegarSalario();
-// Lê o input, checa se é válido.
-// Se válido: converte para 'number' e retorna o valor
-// Se inválido: Gera alerta e joga uma exceção.
-function pegarSalario(){ 
+
+
+function pegarSalario(){
+
+    // Lê o input, checa se é válido.
+    // Se válido: converte para 'number' e retorna o valor
+    // Se inválido: Gera alerta e joga uma exceção.
+
     let i = 0;
     let maxTentativas = 2;
 
@@ -28,6 +32,8 @@ function pegarSalario(){
             alert("Nenhum valor foi inserido");
         }
         
+        valorSalario = Number(valorSalario);
+
         i++;
 
     } while(!strLen>0 && i<=maxTentativas)
