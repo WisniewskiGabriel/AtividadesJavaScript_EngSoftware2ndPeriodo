@@ -1,12 +1,12 @@
-let valorSalario = 0;
+let valorSalario = 0; // Valor global do salário, na entrada e saída
 
 pegarValorInput("Informe o valor do salário");
-valorSalario = valorNumericoInput;
+valorSalario = valorNumericoInput; // Associar imediatamente a var do salário
 
-pegarValorInput("Informe a % do aumento");
+pegarValorInput("Informe a % do aumento"); 
 porcAumento = valorNumericoInput;
 
-calcularAumento(valorSalario,porcAumento);
+calcularAumento(valorSalario,porcAumento); // Passa o valor do sál. e aumento para calcular internamente;
 
 exibirAlerta(`R\$ ${valorSalario}`);
 
@@ -56,19 +56,31 @@ function pegarValorInput(strMensagem){
 }
 
 function exibirAlerta(msgAlert){
+
+    //Apenas exibe a mensagem kkkk
+
     window.alert(msgAlert);
 }
 
 function erroEmpty(maxTentativas){
+
+    // Void para informar que o cálculo não será feito, já que o usuário não informou nenhum valor válido;
+
     maxTentativas = maxTentativas+1;
         alert("Caro usuário, durante "+maxTentativas+" tentativas nenhum valor válido foi inserido.");
 }
 
 function throwInputInvalido(){
+
+    // Jogar exceção para terminar a execução, já que mesmo que calculado, falhará
+
     throw 'Input inválido.';
 }
 
 function calcularAumento(salario,aumento){
+
+    // Soma simples e retorna cálculo
+
     valorSalario = salario / 100 * aumento;     
     valorSalario = salario+valorSalario;
     return valorSalario;
