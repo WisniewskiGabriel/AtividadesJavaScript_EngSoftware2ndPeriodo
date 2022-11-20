@@ -1,19 +1,40 @@
 pegarSalario();
-checarValidadeDoSalario(valorSalario);
-
-function pegarSalario(){
+// Lê o input, checa se é válido.
+// Se válido: converte para 'number' e retorna o valor
+// Se inválido: Gera alerta e joga uma exceção.
+function pegarSalario(){ 
     let i = 0;
+    let maxTentativas = 2;
+
+    maxTentativas = Number(maxTentativas);
+    let isSalarioNaN;
+    let indexDoWhile = 0;
+    let isIgnoreStrLen = false;
+
     do {
         valorSalario = window.prompt("Informe o valor do salário");
+
         strLen = valorSalario.length;
-        if (!strLen>0){
+        isSalarioNaN = isNaN(valorSalario);
+        isIgnoreStrLen = false;
+
+        if (isSalarioNaN){
+            alert("O valor inserido não é numérico");
+            strLen = 0;
+            isIgnoreStrLen = true;
+        }
+
+        if (!strLen>0 && !isIgnoreStrLen){
             alert("Nenhum valor foi inserido");
         }
+        
         i++;
-    } while(!strLen>0 && i<10)
-    if (!strLen>0){
-        alert("Caro usuário, durante 10 tentativas nenhum valor for inserido.")
-        throw 'Length da string inserida não é maior que 0';
+
+    } while(!strLen>0 && i<=maxTentativas)
+
+    if (!strLen>0 | isSalarioNaN){
+        erroEmpty(maxTentativas);
+        throwInputInvalido();
     }
 
     return valorSalario;
@@ -23,14 +44,11 @@ function exibirAlerta(msgAlert){
     window.alert(msgAlert);
 }
 
-function checarValidadeDoSalario(valorSalario){
-    
-    let isSalarioNumber = isNaN(valorSalario);
-    let salarioLength = valorSalario.length;
+function erroEmpty(maxTentativas){
+    maxTentativas = maxTentativas+1;
+        alert("Caro usuário, durante "+maxTentativas+" tentativas nenhum valor válido foi inserido.");
+}
 
-    valorSalario=Number(valorSalario);
-    console.log(valorSalario);
-    console.log(typeof(valorSalario));
-    
-    return isSalarioNumber, salarioLength;
+function throwInputInvalido(){
+    throw 'Input inválido.';
 }
