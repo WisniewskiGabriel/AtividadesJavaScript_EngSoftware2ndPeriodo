@@ -1,7 +1,16 @@
-pegarSalario();
+let valorSalario = 0;
 
+pegarValorInput("Informe o valor do salário");
+valorSalario = valorNumericoInput;
 
-function pegarSalario(){
+pegarValorInput("Informe a % do aumento");
+porcAumento = valorNumericoInput;
+
+calcularAumento(valorSalario,porcAumento);
+
+exibirAlerta(`R\$ ${valorSalario}`);
+
+function pegarValorInput(strMensagem){
 
     // Lê o input, checa se é válido.
     // Se válido: converte para 'number' e retorna o valor
@@ -11,18 +20,18 @@ function pegarSalario(){
     let maxTentativas = 2;
 
     maxTentativas = Number(maxTentativas);
-    let isSalarioNaN;
+    let isValorNaN;
     let indexDoWhile = 0;
     let isIgnoreStrLen = false;
 
     do {
-        valorSalario = window.prompt("Informe o valor do salário");
+        valorNumericoInput = window.prompt(strMensagem);
 
-        strLen = valorSalario.length;
-        isSalarioNaN = isNaN(valorSalario);
+        strLen = valorNumericoInput.length;
+        isValorNaN = isNaN(valorNumericoInput);
         isIgnoreStrLen = false;
 
-        if (isSalarioNaN){
+        if (isValorNaN){
             alert("O valor inserido não é numérico");
             strLen = 0;
             isIgnoreStrLen = true;
@@ -32,18 +41,18 @@ function pegarSalario(){
             alert("Nenhum valor foi inserido");
         }
         
-        valorSalario = Number(valorSalario);
+        valorNumericoInput = Number(valorNumericoInput);
 
         i++;
 
     } while(!strLen>0 && i<=maxTentativas)
 
-    if (!strLen>0 | isSalarioNaN){
+    if (!strLen>0 | isValorNaN){
         erroEmpty(maxTentativas);
         throwInputInvalido();
     }
 
-    return valorSalario;
+    return valorNumericoInput;
 }
 
 function exibirAlerta(msgAlert){
@@ -57,4 +66,10 @@ function erroEmpty(maxTentativas){
 
 function throwInputInvalido(){
     throw 'Input inválido.';
+}
+
+function calcularAumento(salario,aumento){
+    valorSalario = salario / 100 * aumento;     
+    valorSalario = salario+valorSalario;
+    return valorSalario;
 }
